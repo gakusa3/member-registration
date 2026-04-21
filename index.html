@@ -7,495 +7,95 @@
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #09A5D6;
-    --primary-light: #2BB8E8;
-    --primary-dark: #0789B2;
-    --accent: #06C49A;
-    --bg: #F0FAFD;
-    --surface: #FFFFFF;
-    --text: #1E2D36;
-    --text-muted: #6B8A96;
-    --border: #C2E4F0;
-    --error: #E03E3E;
-    --success: #0A9B72;
-    --radius: 12px;
-    --shadow: 0 3px 12px rgba(9,165,214,0.10);
+    --primary:#09A5D6;--primary-light:#2BB8E8;--primary-dark:#0789B2;
+    --accent:#06C49A;--bg:#F0FAFD;--surface:#FFFFFF;--text:#1E2D36;
+    --text-muted:#6B8A96;--border:#C2E4F0;--error:#E03E3E;--radius:12px;
+    --shadow:0 3px 12px rgba(9,165,214,0.10);
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0 0 60px;
-  }
-
-  .hero {
-    background: var(--primary);
-    padding: 20px 24px 18px;
-  }
-  .hero-inner {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .hero-org {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.75);
-    letter-spacing: 0.05em;
-    margin-bottom: 3px;
-  }
-  .hero h1 {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.03em;
-  }
-
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  /* STEP indicator */
-  .steps {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    margin: 28px 0 24px;
-    justify-content: center;
-  }
-  .step-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-  .step-item.active { color: var(--primary); font-weight: 700; }
-  .step-item.done { color: var(--accent); }
-  .step-num {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.72rem;
-    font-weight: 700;
-    background: #fff;
-    color: var(--text-muted);
-    transition: all 0.3s;
-  }
-  .step-item.active .step-num { border-color: var(--primary); background: var(--primary); color: #fff; }
-  .step-item.done .step-num { border-color: var(--accent); background: var(--accent); color: #fff; }
-  .step-line {
-    width: 36px; height: 2px;
-    background: var(--border);
-    margin: 0 4px;
-  }
-
-  /* Section card */
-  .section-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 24px;
-    margin-bottom: 16px;
-    border: 1.5px solid var(--border);
-    animation: fadeUp 0.3s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-title {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-bottom: 10px;
-    border-bottom: 1.5px solid var(--border);
-  }
-  .section-title .badge {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 6px;
-    width: 22px; height: 22px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.72rem;
-    font-weight: 800;
-    flex-shrink: 0;
-  }
-
-  .field { margin-bottom: 16px; }
-  .field:last-child { margin-bottom: 0; }
-
-  label {
-    display: block;
-    font-size: 0.83rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  label .req {
-    color: var(--error);
-    font-size: 0.75rem;
-    margin-left: 4px;
-  }
-  label .note {
-    color: var(--text-muted);
-    font-size: 0.74rem;
-    font-weight: 400;
-    margin-left: 6px;
-  }
-
-  input[type="text"],
-  input[type="tel"],
-  input[type="email"],
-  select,
-  textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.93rem;
-    color: var(--text);
-    background: #fff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    appearance: none;
-  }
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(9,165,214,0.13);
-  }
-  input.error, select.error { border-color: var(--error); }
-
-  .input-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  /* Radio / Toggle group */
-  .toggle-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .toggle-group input[type="radio"] { display: none; }
-  .toggle-group label {
-    flex: 1;
-    min-width: 80px;
-    text-align: center;
-    padding: 10px 10px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    background: #F5FBFE;
-    transition: all 0.15s;
-    user-select: none;
-    margin-bottom: 0;
-  }
-  .toggle-group input[type="radio"]:checked + label {
-    border-color: var(--primary);
-    background: rgba(9,165,214,0.10);
-    color: var(--primary);
-    font-weight: 700;
-  }
-
-  /* Address row */
-  .zip-row { display: flex; gap: 10px; align-items: flex-end; }
-  .zip-row input { flex: 1; }
-  .btn-zip {
-    padding: 11px 16px;
-    background: #fff;
-    color: var(--primary);
-    border: 1.5px solid var(--primary);
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 0.83rem;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.15s, color 0.15s;
-  }
-  .btn-zip:hover { background: var(--primary); color: #fff; }
-
-  /* Bank section (hidden by default) */
-  #bankSection { display: none; margin-top: 16px; padding-top: 16px; border-top: 1.5px solid var(--border); }
-  #bankSection.show { display: block; }
-
-  /* Select wrapper */
-  .select-wrap { position: relative; }
-  .select-wrap::after {
-    content: '▾';
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--text-muted);
-    font-size: 0.82rem;
-  }
-
-  /* Submit button */
-  .btn-submit {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 0.04em;
-    box-shadow: 0 4px 14px rgba(9,165,214,0.30);
-    transition: background 0.15s, box-shadow 0.15s;
-    margin-top: 12px;
-  }
-  .btn-submit:hover { background: var(--primary-light); box-shadow: 0 6px 18px rgba(9,165,214,0.35); }
-  .btn-submit:active { background: var(--primary-dark); }
-
-  /* Error message */
-  .err-msg {
-    color: var(--error);
-    font-size: 0.76rem;
-    margin-top: 4px;
-    display: none;
-  }
-  .err-msg.show { display: block; }
-
-  /* ===== CONFIRM SCREEN ===== */
-  #confirmScreen {
-    display: none;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  #confirmScreen.show { display: block; }
-  #formScreen { display: block; }
-  #formScreen.hide { display: none; }
-
-  .confirm-title {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 28px 0 6px;
-  }
-  .confirm-desc {
-    font-size: 0.83rem;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-  }
-  .confirm-card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1.5px solid var(--border);
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .confirm-section-head {
-    background: #E8F6FB;
-    color: var(--primary-dark);
-    font-weight: 700;
-    font-size: 0.82rem;
-    padding: 9px 20px;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.02em;
-  }
-  .confirm-row {
-    display: flex;
-    padding: 11px 20px;
-    border-bottom: 1px solid #EEF7FB;
-    gap: 12px;
-  }
-  .confirm-row:last-child { border-bottom: none; }
-  .confirm-label {
-    font-size: 0.80rem;
-    color: var(--text-muted);
-    width: 140px;
-    flex-shrink: 0;
-    padding-top: 1px;
-  }
-  .confirm-value { font-size: 0.90rem; font-weight: 500; }
-
-  .btn-row { display: flex; gap: 10px; margin-top: 8px; }
-  .btn-back {
-    flex: 1;
-    padding: 13px;
-    background: #fff;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--text-muted);
-    transition: all 0.15s;
-  }
-  .btn-back:hover { border-color: var(--primary); color: var(--primary); }
-  .btn-confirm {
-    flex: 2;
-    padding: 13px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 3px 12px rgba(6,196,154,0.28);
-    transition: background 0.15s;
-  }
-  .btn-confirm:hover { background: #05AF88; }
-
-  /* ===== SUCCESS SCREEN ===== */
-  #successScreen {
-    display: none;
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 48px 20px 0;
-  }
-  #successScreen.show { display: block; }
-  .success-box {
-    background: var(--surface);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1.5px solid var(--border);
-    padding: 40px 32px;
-    text-align: center;
-    animation: fadeUp 0.4s ease both;
-  }
-  .success-icon {
-    width: 56px; height: 56px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-  .success-title {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 14px;
-  }
-  .success-body {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.9;
-    text-align: left;
-  }
-  .success-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 20px 0;
-  }
-  .line-note {
-    display: inline-block;
-    background: #E5F9EF;
-    color: #0A9B72;
-    border: 1px solid #A8E6CE;
-    border-radius: 5px;
-    padding: 2px 10px;
-    font-size: 0.80rem;
-    font-weight: 700;
-    margin: 0 2px;
-  }
-
-  @media (max-width: 480px) {
-    .input-row { grid-template-columns: 1fr; }
-    .confirm-label { width: 100px; }
-  }
-
-  /* 注意書き */
-  .info-note {
-    background: #EBF7FC;
-    border-left: 3px solid var(--primary);
-    border-radius: 0 6px 6px 0;
-    padding: 10px 14px;
-    font-size: 0.80rem;
-    color: #1E5F78;
-    line-height: 1.7;
-    margin-bottom: 10px;
-  }
-  .id-note {
-    background: #FFF8E8;
-    border-left-color: #E8A020;
-    color: #7A4F10;
-    margin-bottom: 14px;
-  }
-
-  /* ファイルアップロード */
-  .file-upload-area {
-    border: 2px dashed var(--border);
-    border-radius: 10px;
-    padding: 28px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    background: #F5FBFE;
-  }
-  .file-upload-area:hover, .file-upload-area.dragover {
-    border-color: var(--primary);
-    background: rgba(9,165,214,0.05);
-  }
-  .file-upload-area.has-file {
-    border-color: var(--accent);
-    background: rgba(6,196,154,0.04);
-  }
-  .file-upload-area.error { border-color: var(--error); }
-  .file-upload-icon { font-size: 2rem; margin-bottom: 8px; }
-  .file-upload-text { font-size: 0.9rem; font-weight: 700; color: var(--primary); }
-  .file-upload-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 4px; }
-  .file-preview {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    padding: 10px 14px;
-    background: #F0FBF8;
-    border: 1px solid #A8E6CE;
-    border-radius: 8px;
-  }
-  .file-name { font-size: 0.85rem; flex: 1; color: var(--text); word-break: break-all; }
-  .file-remove {
-    background: none;
-    border: none;
-    color: var(--error);
-    font-size: 0.80rem;
-    cursor: pointer;
-    white-space: nowrap;
-    font-weight: 700;
-    padding: 2px 6px;
-  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0 0 60px;}
+  .hero{background:var(--primary);padding:20px 24px 18px;}
+  .hero-inner{max-width:680px;margin:0 auto;}
+  .hero-org{font-size:.78rem;color:rgba(255,255,255,.75);letter-spacing:.05em;margin-bottom:3px;}
+  .hero h1{font-family:'M PLUS Rounded 1c',sans-serif;font-size:1.3rem;font-weight:700;color:#fff;}
+  .container{max-width:680px;margin:0 auto;padding:0 20px;}
+  .steps{display:flex;align-items:center;margin:28px 0 24px;justify-content:center;}
+  .step-item{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text-muted);font-weight:500;}
+  .step-item.active{color:var(--primary);font-weight:700;}.step-item.done{color:var(--accent);}
+  .step-num{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;background:#fff;color:var(--text-muted);transition:all .3s;}
+  .step-item.active .step-num{border-color:var(--primary);background:var(--primary);color:#fff;}
+  .step-item.done .step-num{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .step-line{width:36px;height:2px;background:var(--border);margin:0 4px;}
+  .section-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:16px;border:1.5px solid var(--border);animation:fadeUp .3s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .section-title{font-family:'M PLUS Rounded 1c',sans-serif;font-size:.95rem;font-weight:700;color:var(--primary);margin-bottom:18px;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1.5px solid var(--border);}
+  .section-title .badge{background:var(--primary);color:#fff;border-radius:6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;}
+  .field{margin-bottom:16px;}.field:last-child{margin-bottom:0;}
+  label{display:block;font-size:.83rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+  label .req{color:var(--error);font-size:.75rem;margin-left:4px;}
+  label .note{color:var(--text-muted);font-size:.74rem;font-weight:400;margin-left:6px;}
+  input[type="text"],input[type="tel"],input[type="email"],input[type="date"],select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.93rem;color:var(--text);background:#fff;transition:border-color .2s,box-shadow .2s;outline:none;appearance:none;}
+  input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(9,165,214,.13);}
+  input.error,select.error{border-color:var(--error);}
+  .input-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .toggle-group{display:flex;gap:8px;flex-wrap:wrap;}
+  .toggle-group input[type="radio"]{display:none;}
+  .toggle-group label{flex:1;min-width:80px;text-align:center;padding:10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:.88rem;font-weight:500;color:var(--text-muted);background:#F5FBFE;transition:all .15s;user-select:none;margin-bottom:0;}
+  .toggle-group input[type="radio"]:checked+label{border-color:var(--primary);background:rgba(9,165,214,.10);color:var(--primary);font-weight:700;}
+  .zip-row{display:flex;gap:10px;align-items:flex-end;}.zip-row input{flex:1;}
+  .btn-zip{padding:11px 16px;background:#fff;color:var(--primary);border:1.5px solid var(--primary);border-radius:8px;font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
+  .btn-zip:hover{background:var(--primary);color:#fff;}
+  #bankSection{display:none;margin-top:16px;padding-top:16px;border-top:1.5px solid var(--border);}
+  #bankSection.show{display:block;}
+  .select-wrap{position:relative;}
+  .select-wrap::after{content:'▾';position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted);font-size:.82rem;}
+  .note-box{border-radius:8px;padding:10px 14px;font-size:.80rem;line-height:1.7;margin-bottom:14px;}
+  .note-box.info{background:#E3F4FB;border:1px solid #81D4F0;color:#0789B2;}
+  .note-box.warning{background:#FFF8E1;border:1px solid #FFD54F;color:#7B5800;}
+  .file-area{border:2px dashed var(--border);border-radius:10px;padding:24px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#F8FCFE;position:relative;}
+  .file-area:hover,.file-area.dragover{border-color:var(--primary);background:rgba(9,165,214,.05);}
+  .file-area.error{border-color:var(--error);}
+  .file-area input[type="file"]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:none;padding:0;}
+  .file-area-icon{font-size:2rem;margin-bottom:6px;}
+  .file-area-text{font-size:.85rem;color:var(--text-muted);}
+  .file-area-text strong{color:var(--primary);}
+  .file-preview{display:none;margin-top:12px;background:#E8F6FB;border-radius:6px;padding:8px 12px;font-size:.82rem;color:var(--primary-dark);font-weight:500;align-items:center;gap:8px;}
+  .file-preview.show{display:flex;}
+  .file-preview-remove{margin-left:auto;background:none;border:none;color:var(--error);cursor:pointer;font-size:1rem;padding:0 4px;}
+  .btn-submit{display:block;width:100%;padding:15px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);font-family:'M PLUS Rounded 1c',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.04em;box-shadow:0 4px 14px rgba(9,165,214,.30);transition:background .15s;margin-top:12px;}
+  .btn-submit:hover{background:var(--primary-light);}
+  .err-msg{color:var(--error);font-size:.76rem;margin-top:4px;display:none;}
+  .err-msg.show{display:block;}
+  #confirmScreen{display:none;max-width:680px;margin:0 auto;padding:0 20px;}
+  #confirmScreen.show{display:block;}
+  #formScreen.hide{display:none;}
+  .confirm-title{font-family:'M PLUS Rounded 1c',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 6px;}
+  .confirm-desc{font-size:.83rem;color:var(--text-muted);margin-bottom:20px;}
+  .confirm-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid var(--border);overflow:hidden;margin-bottom:16px;}
+  .confirm-section-head{background:#E8F6FB;color:var(--primary-dark);font-weight:700;font-size:.82rem;padding:9px 20px;border-bottom:1px solid var(--border);}
+  .confirm-row{display:flex;padding:11px 20px;border-bottom:1px solid #EEF7FB;gap:12px;}
+  .confirm-row:last-child{border-bottom:none;}
+  .confirm-label{font-size:.80rem;color:var(--text-muted);width:140px;flex-shrink:0;padding-top:1px;}
+  .confirm-value{font-size:.90rem;font-weight:500;}
+  .btn-row{display:flex;gap:10px;margin-top:8px;}
+  .btn-back{flex:1;padding:13px;background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'M PLUS Rounded 1c',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;color:var(--text-muted);transition:all .15s;}
+  .btn-back:hover{border-color:var(--primary);color:var(--primary);}
+  .btn-confirm{flex:2;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-family:'M PLUS Rounded 1c',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(6,196,154,.28);transition:background .15s;}
+  .btn-confirm:hover{background:#05AF88;}
+  .btn-confirm:disabled{background:#aaa;box-shadow:none;cursor:not-allowed;}
+  #successScreen{display:none;max-width:520px;margin:0 auto;padding:48px 20px 0;}
+  #successScreen.show{display:block;}
+  .success-box{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid var(--border);padding:40px 32px;text-align:center;animation:fadeUp .4s ease both;}
+  .success-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-size:1.5rem;font-weight:700;}
+  .success-title{font-family:'M PLUS Rounded 1c',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:14px;}
+  .success-body{font-size:.88rem;color:var(--text-muted);line-height:1.9;text-align:left;}
+  .success-divider{border:none;border-top:1px solid var(--border);margin:20px 0;}
+  .line-note{display:inline-block;background:#E5F9EF;color:#0A9B72;border:1px solid #A8E6CE;border-radius:5px;padding:2px 10px;font-size:.80rem;font-weight:700;margin:0 2px;}
+  @media(max-width:480px){.input-row{grid-template-columns:1fr;}.confirm-label{width:100px;}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="hero">
   <div class="hero-inner">
     <div class="hero-org">学生サービスセンター</div>
@@ -503,70 +103,52 @@
   </div>
 </div>
 
-<!-- ===== FORM SCREEN ===== -->
 <div id="formScreen">
   <div class="container">
     <div class="steps" id="stepDots"></div>
 
-    <!-- 1. 種別 -->
+    <!-- 1. 登録種別 -->
     <div class="section-card">
       <div class="section-title"><span class="badge">1</span> 登録種別</div>
       <div class="field">
         <label>勤務スタイル <span class="req">*</span></label>
         <div class="toggle-group">
-          <input type="radio" name="workType" id="wtTanpatu" value="単発">
-          <label for="wtTanpatu">単発</label>
-          <input type="radio" name="workType" id="wtChoki" value="長期">
-          <label for="wtChoki">長期</label>
+          <input type="radio" name="workType" id="wtTanpatu" value="単発"><label for="wtTanpatu">単発</label>
+          <input type="radio" name="workType" id="wtChoki" value="長期"><label for="wtChoki">長期</label>
         </div>
         <div class="err-msg" id="err_workType">勤務スタイルを選択してください。</div>
       </div>
     </div>
 
-    <!-- 2. 氏名 -->
+    <!-- 2. 会員情報 -->
     <div class="section-card">
       <div class="section-title"><span class="badge">2</span> 会員情報</div>
       <div class="field">
         <label>お名前 <span class="req">*</span></label>
         <div class="input-row">
-          <div>
-            <input type="text" id="lastName" placeholder="苗字（例：山田）">
-            <div class="err-msg" id="err_lastName">苗字を入力してください。</div>
-          </div>
-          <div>
-            <input type="text" id="firstName" placeholder="名前（例：太郎）">
-            <div class="err-msg" id="err_firstName">名前を入力してください。</div>
-          </div>
+          <div><input type="text" id="lastName" placeholder="苗字（例：山田）"><div class="err-msg" id="err_lastName">苗字を入力してください。</div></div>
+          <div><input type="text" id="firstName" placeholder="名前（例：太郎）"><div class="err-msg" id="err_firstName">名前を入力してください。</div></div>
         </div>
       </div>
       <div class="field">
         <label>お名前（カナ） <span class="req">*</span></label>
         <div class="input-row">
-          <div>
-            <input type="text" id="lastNameKana" placeholder="ミョウジ（例：ヤマダ）">
-            <div class="err-msg" id="err_lastNameKana">苗字（カナ）を入力してください。</div>
-          </div>
-          <div>
-            <input type="text" id="firstNameKana" placeholder="ナマエ（例：タロウ）">
-            <div class="err-msg" id="err_firstNameKana">名前（カナ）を入力してください。</div>
-          </div>
+          <div><input type="text" id="lastNameKana" placeholder="ミョウジ（例：ヤマダ）"><div class="err-msg" id="err_lastNameKana">苗字（カナ）を入力してください。</div></div>
+          <div><input type="text" id="firstNameKana" placeholder="ナマエ（例：タロウ）"><div class="err-msg" id="err_firstNameKana">名前（カナ）を入力してください。</div></div>
         </div>
       </div>
       <div class="field">
         <label>性別 <span class="req">*</span></label>
         <div class="toggle-group">
-          <input type="radio" name="gender" id="gMale" value="男性">
-          <label for="gMale">男性</label>
-          <input type="radio" name="gender" id="gFemale" value="女性">
-          <label for="gFemale">女性</label>
-          <input type="radio" name="gender" id="gOther" value="その他・答えない">
-          <label for="gOther">その他・答えない</label>
+          <input type="radio" name="gender" id="gMale" value="男性"><label for="gMale">男性</label>
+          <input type="radio" name="gender" id="gFemale" value="女性"><label for="gFemale">女性</label>
+          <input type="radio" name="gender" id="gOther" value="その他・答えない"><label for="gOther">その他・答えない</label>
         </div>
         <div class="err-msg" id="err_gender">性別を選択してください。</div>
       </div>
       <div class="field">
         <label>生年月日 <span class="req">*</span></label>
-        <input type="date" id="birthDate" max="">
+        <input type="date" id="birthDate">
         <div class="err-msg" id="err_birthDate">生年月日を入力してください。</div>
       </div>
     </div>
@@ -604,12 +186,14 @@
       <div class="field">
         <label>電話番号 <span class="req">*</span> <span class="note">ハイフンなしで入力</span></label>
         <input type="tel" id="phone" placeholder="例：09012345678" maxlength="11" inputmode="numeric">
-        <div class="err-msg" id="err_phone">電話番号を正しく入力してください（数字のみ、11桁以内）。</div>
+        <div class="err-msg" id="err_phone">電話番号を正しく入力してください（数字のみ、10〜11桁）。</div>
       </div>
       <div class="field">
         <label>メールアドレス <span class="req">*</span></label>
-        <div class="info-note">iCloudメール（@icloud.com / @me.com / @mac.com）はAppleの迷惑メールフィルターにより弊社からのメールが届かない事例が確認されています。Gmail・Yahoo!メール等、iCloud以外のアドレスをご登録ください。</div>
-        <input type="email" id="email" placeholder="例：taro@example.com">
+        <div class="note-box warning">
+          iCloudメール（@icloud.com / @me.com / @mac.com）は、Appleの迷惑メールフィルターにより弊社からのご連絡が届かない事例が発生しています。<strong>iCloud以外のメールアドレス（Gmail・Yahoo!メール等）</strong>をご入力ください。
+        </div>
+        <input type="email" id="email" placeholder="例：taro@gmail.com">
         <div class="err-msg" id="err_email">有効なメールアドレスを入力してください（iCloudメール不可）。</div>
       </div>
     </div>
@@ -618,21 +202,15 @@
     <div class="section-card">
       <div class="section-title"><span class="badge">5</span> 緊急連絡先</div>
       <div class="field">
-        <label>緊急連絡先の電話番号 <span class="req">*</span> <span class="note">ハイフンなしで入力</span></label>
+        <label>電話番号 <span class="req">*</span> <span class="note">ハイフンなしで入力</span></label>
         <input type="tel" id="emergencyPhone" placeholder="例：09876543210" maxlength="11" inputmode="numeric">
-        <div class="err-msg" id="err_emergencyPhone">電話番号を正しく入力してください（数字のみ、11桁以内）。</div>
+        <div class="err-msg" id="err_emergencyPhone">電話番号を正しく入力してください（数字のみ、10〜11桁）。</div>
       </div>
       <div class="field">
-        <label>緊急連絡先のお名前 <span class="req">*</span></label>
+        <label>氏名 <span class="req">*</span></label>
         <div class="input-row">
-          <div>
-            <input type="text" id="emergencyLastName" placeholder="苗字（例：山田）">
-            <div class="err-msg" id="err_emergencyLastName">苗字を入力してください。</div>
-          </div>
-          <div>
-            <input type="text" id="emergencyFirstName" placeholder="名前（例：花子）">
-            <div class="err-msg" id="err_emergencyFirstName">名前を入力してください。</div>
-          </div>
+          <div><input type="text" id="emergencyLastName" placeholder="苗字（例：山田）"><div class="err-msg" id="err_emergencyLastName">苗字を入力してください。</div></div>
+          <div><input type="text" id="emergencyFirstName" placeholder="名前（例：花子）"><div class="err-msg" id="err_emergencyFirstName">名前を入力してください。</div></div>
         </div>
       </div>
       <div class="field">
@@ -640,15 +218,11 @@
         <div class="select-wrap">
           <select id="emergencyRelation" onchange="toggleRelationOther()">
             <option value="">選択してください</option>
-            <option value="父">父</option>
-            <option value="母">母</option>
-            <option value="兄">兄</option>
-            <option value="姉">姉</option>
-            <option value="弟">弟</option>
-            <option value="妹">妹</option>
+            <option value="父">父</option><option value="母">母</option>
+            <option value="兄">兄</option><option value="姉">姉</option>
+            <option value="弟">弟</option><option value="妹">妹</option>
             <option value="配偶者">配偶者</option>
-            <option value="祖父">祖父</option>
-            <option value="祖母">祖母</option>
+            <option value="祖父">祖父</option><option value="祖母">祖母</option>
             <option value="その他">その他</option>
           </select>
         </div>
@@ -665,28 +239,26 @@
     <div class="section-card">
       <div class="section-title"><span class="badge">6</span> 給与受け取り方法</div>
       <div class="field">
+        <div class="note-box info">
+          <strong>振込（銀行口座振込）</strong>または<strong>来店（窓口での現金受取）</strong>からお選びください。<br>
+          振込を選択された場合は、以下に口座情報をご入力ください。
+        </div>
         <label>受け取り方法 <span class="req">*</span></label>
-        <div class="info-note">銀行口座への振込か、窓口での現金受け取りかを選択してください。</div>
         <div class="toggle-group">
           <input type="radio" name="payMethod" id="payTransfer" value="振込" onchange="toggleBank()">
           <label for="payTransfer">振込（銀行口座振込）</label>
           <input type="radio" name="payMethod" id="payVisit" value="来店" onchange="toggleBank()">
-          <label for="payVisit">来店（窓口で現金受け取り）</label>
+          <label for="payVisit">来店（窓口で現金受取）</label>
         </div>
         <div class="err-msg" id="err_payMethod">受け取り方法を選択してください。</div>
       </div>
-
-      <!-- 振込の場合 -->
       <div id="bankSection">
         <div class="field">
           <label>銀行名 <span class="req">*</span></label>
           <div class="toggle-group">
-            <input type="radio" name="bankName" id="bankYucho" value="ゆうちょ銀行" onchange="toggleBankFields()">
-            <label for="bankYucho">ゆうちょ銀行</label>
-            <input type="radio" name="bankName" id="bankOkinawa" value="沖縄銀行" onchange="toggleBankFields()">
-            <label for="bankOkinawa">沖縄銀行</label>
-            <input type="radio" name="bankName" id="bankRyukyu" value="琉球銀行" onchange="toggleBankFields()">
-            <label for="bankRyukyu">琉球銀行</label>
+            <input type="radio" name="bankName" id="bankYucho" value="ゆうちょ銀行" onchange="toggleBankFields()"><label for="bankYucho">ゆうちょ銀行</label>
+            <input type="radio" name="bankName" id="bankOkinawa" value="沖縄銀行" onchange="toggleBankFields()"><label for="bankOkinawa">沖縄銀行</label>
+            <input type="radio" name="bankName" id="bankRyukyu" value="琉球銀行" onchange="toggleBankFields()"><label for="bankRyukyu">琉球銀行</label>
           </div>
           <div class="err-msg" id="err_bankName">銀行名を選択してください。</div>
         </div>
@@ -698,10 +270,8 @@
         <div class="field" id="accountTypeField">
           <label>種別 <span class="req">*</span></label>
           <div class="toggle-group">
-            <input type="radio" name="accountType" id="atFutsuu" value="普通">
-            <label for="atFutsuu">普通</label>
-            <input type="radio" name="accountType" id="atTouza" value="当座">
-            <label for="atTouza">当座</label>
+            <input type="radio" name="accountType" id="atFutsuu" value="普通"><label for="atFutsuu">普通</label>
+            <input type="radio" name="accountType" id="atTouza" value="当座"><label for="atTouza">当座</label>
           </div>
           <div class="err-msg" id="err_accountType">種別を選択してください。</div>
         </div>
@@ -718,38 +288,32 @@
         <div class="field">
           <label>口座名義（カナ） <span class="req">*</span></label>
           <div class="input-row">
-            <div>
-              <input type="text" id="accountLastName" placeholder="ミョウジ（例：ヤマダ）">
-              <div class="err-msg" id="err_accountLastName">苗字（カナ）を入力してください。</div>
-            </div>
-            <div>
-              <input type="text" id="accountFirstName" placeholder="ナマエ（例：タロウ）">
-              <div class="err-msg" id="err_accountFirstName">名前（カナ）を入力してください。</div>
-            </div>
+            <div><input type="text" id="accountLastName" placeholder="ミョウジ（例：ヤマダ）"><div class="err-msg" id="err_accountLastName">苗字（カナ）を入力してください。</div></div>
+            <div><input type="text" id="accountFirstName" placeholder="ナマエ（例：タロウ）"><div class="err-msg" id="err_accountFirstName">名前（カナ）を入力してください。</div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 7. 身分証明書 -->
+    <!-- 7. 身分証 -->
     <div class="section-card">
-      <div class="section-title"><span class="badge">7</span> 身分証明書の添付</div>
+      <div class="section-title"><span class="badge">7</span> 身分証明書</div>
+      <div class="note-box info">
+        <strong>添付する書類について</strong><br>
+        ・<strong>学生の方</strong>：学生証の写真をご添付ください。<br>
+        ・<strong>学生以外の方</strong>：顔写真付き身分証（運転免許証・マイナンバーカード等）または健康保険証の写真をご添付ください。<br>
+        対応形式：JPG / PNG / PDF（5MB以内）
+      </div>
       <div class="field">
-        <div class="info-note id-note">
-          <strong>添付する書類について</strong><br>
-          ・<strong>学生の方：</strong>学生証の写真<br>
-          ・<strong>学生以外の方：</strong>顔写真付き身分証（運転免許証・マイナンバーカード等）または健康保険証の写真
+        <label>身分証明書の画像 <span class="req">*</span></label>
+        <div class="file-area" id="fileUploadArea">
+          <input type="file" id="idFile" accept="image/jpeg,image/png,application/pdf" onchange="onFileChange()">
+          <div class="file-area-icon">📎</div>
+          <div class="file-area-text"><strong>ファイルを選択</strong>またはここにドロップ<br><span style="font-size:.75rem;">JPG / PNG / PDF（5MB以内）</span></div>
         </div>
-        <label>身分証明書の画像 <span class="req">*</span> <span class="note">JPG・PNG・PDF（10MB以内）</span></label>
-        <div class="file-upload-area" id="fileUploadArea" onclick="document.getElementById('idFile').click()">
-          <div class="file-upload-icon">&#128247;</div>
-          <div class="file-upload-text">クリックして画像を選択</div>
-          <div class="file-upload-sub">またはここにドラッグ＆ドロップ</div>
-          <input type="file" id="idFile" accept="image/jpeg,image/png,application/pdf" style="display:none" onchange="handleFileSelect(this)">
-        </div>
-        <div class="file-preview" id="filePreview" style="display:none">
-          <span class="file-name" id="fileName"></span>
-          <button type="button" class="file-remove" onclick="removeFile()">✕ 削除</button>
+        <div class="file-preview" id="filePreview">
+          <span id="filePreviewName"></span>
+          <button type="button" class="file-preview-remove" onclick="removeFile()">✕</button>
         </div>
         <div class="err-msg" id="err_idFile">身分証明書の画像を添付してください。</div>
       </div>
@@ -759,7 +323,7 @@
   </div>
 </div>
 
-<!-- ===== CONFIRM SCREEN ===== -->
+<!-- CONFIRM -->
 <div id="confirmScreen">
   <div class="container">
     <div class="confirm-title">入力内容の確認</div>
@@ -767,15 +331,15 @@
     <div id="confirmContent"></div>
     <div class="btn-row">
       <button class="btn-back" onclick="backToForm()">修正する</button>
-      <button class="btn-confirm" onclick="submitForm()">この内容で登録する</button>
+      <button class="btn-confirm" id="btnConfirm" onclick="submitForm()">この内容で登録する</button>
     </div>
   </div>
 </div>
 
-<!-- ===== SUCCESS SCREEN ===== -->
+<!-- SUCCESS -->
 <div id="successScreen">
   <div class="success-box">
-    <div class="success-icon">&#10003;</div>
+    <div class="success-icon">✓</div>
     <div class="success-title">送信が完了しました</div>
     <hr class="success-divider">
     <div class="success-body">
@@ -787,428 +351,191 @@
 </div>
 
 <script>
-// ファイル選択処理
-function handleFileSelect(input) {
-  const file = input.files[0];
-  if(!file) return;
-  if(file.size > 10 * 1024 * 1024){
-    showErr('idFile','ファイルサイズが10MBを超えています。');
-    input.value = '';
-    return;
-  }
-  hideErr('idFile');
-  document.getElementById('fileName').textContent = file.name;
-  document.getElementById('filePreview').style.display = 'flex';
-  document.getElementById('fileUploadArea').classList.add('has-file');
-  document.getElementById('fileUploadArea').querySelector('.file-upload-text').textContent = '選択済み';
-}
-
-function removeFile() {
-  document.getElementById('idFile').value = '';
-  document.getElementById('filePreview').style.display = 'none';
-  document.getElementById('fileUploadArea').classList.remove('has-file');
-  document.getElementById('fileUploadArea').querySelector('.file-upload-text').textContent = 'クリックして画像を選択';
-}
-
-// ステップ表示
-document.addEventListener('DOMContentLoaded', () => {
-  // 生年月日の上限を今日に設定
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth()+1).padStart(2,'0');
-  const dd = String(today.getDate()).padStart(2,'0');
-  document.getElementById('birthDate').max = `${yyyy}-${mm}-${dd}`;
-
-  const steps = document.getElementById('stepDots');
-  const labels = ['入力', '確認', '完了'];
-  labels.forEach((lbl, i) => {
-    if(i > 0){
-      const line = document.createElement('div');
-      line.className = 'step-line';
-      steps.appendChild(line);
-    }
-    const item = document.createElement('div');
-    item.className = 'step-item' + (i===0?' active':'');
-    item.innerHTML = `<div class="step-num">${i+1}</div>${lbl}`;
-    steps.appendChild(item);
+document.addEventListener('DOMContentLoaded',()=>{
+  ['入力','確認','完了'].forEach((lbl,i)=>{
+    const s=document.getElementById('stepDots');
+    if(i>0){const l=document.createElement('div');l.className='step-line';s.appendChild(l);}
+    const item=document.createElement('div');
+    item.className='step-item'+(i===0?' active':'');
+    item.innerHTML=`<div class="step-num">${i+1}</div>${lbl}`;
+    s.appendChild(item);
   });
-
-  // ドラッグ＆ドロップ
-  const area = document.getElementById('fileUploadArea');
-  area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('dragover'); });
-  area.addEventListener('dragleave', () => area.classList.remove('dragover'));
-  area.addEventListener('drop', e => {
-    e.preventDefault();
-    area.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    if(file){
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      const input = document.getElementById('idFile');
-      input.files = dt.files;
-      handleFileSelect(input);
-    }
-  });
+  const area=document.getElementById('fileUploadArea');
+  area.addEventListener('dragover',e=>{e.preventDefault();area.classList.add('dragover');});
+  area.addEventListener('dragleave',()=>area.classList.remove('dragover'));
+  area.addEventListener('drop',e=>{e.preventDefault();area.classList.remove('dragover');if(e.dataTransfer.files[0])setFile(e.dataTransfer.files[0]);});
 });
 
-// 郵便番号→住所自動入力（JSONP方式）
-function fetchAddress() {
-  const zip = document.getElementById('zipCode').value.replace(/-/g,'').trim();
-  if(!/^\d{7}$/.test(zip)){
-    showErr('zipCode','郵便番号は7桁の数字で入力してください。');
-    return;
-  }
+async function fetchAddress(){
+  const zip=document.getElementById('zipCode').value.replace(/-/g,'').trim();
+  if(!/^\d{7}$/.test(zip)){showErr('zipCode','郵便番号は7桁の数字で入力してください。');return;}
   hideErr('zipCode');
-
-  // 既存のscriptタグがあれば削除
-  const old = document.getElementById('zipScript');
-  if(old) old.remove();
-
-  window._zipCallback = function(data) {
-    if(data.results){
-      const r = data.results[0];
-      document.getElementById('prefecture').value = r.address1;
-      document.getElementById('address1').value   = r.address2 + r.address3;
-    } else {
-      showErr('zipCode','該当する住所が見つかりませんでした。');
-    }
-    delete window._zipCallback;
-  };
-
-  const script = document.createElement('script');
-  script.id  = 'zipScript';
-  script.src = `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zip}&callback=_zipCallback`;
-  script.onerror = function() {
-    showErr('zipCode','住所の取得に失敗しました。手動で入力してください。');
-    delete window._zipCallback;
-  };
-  document.body.appendChild(script);
+  try{
+    const res=await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zip}`);
+    const data=await res.json();
+    if(data.results){const r=data.results[0];document.getElementById('prefecture').value=r.address1;document.getElementById('address1').value=r.address2+r.address3;}
+    else showErr('zipCode','該当する住所が見つかりませんでした。');
+  }catch(e){showErr('zipCode','住所の取得に失敗しました。手動で入力してください。');}
 }
 
-// 銀行セクション表示切り替え
-function toggleBank() {
-  const isTransfer = document.querySelector('input[name="payMethod"]:checked')?.value === '振込';
-  document.getElementById('bankSection').classList.toggle('show', isTransfer);
+function toggleBank(){
+  document.getElementById('bankSection').classList.toggle('show',document.querySelector('input[name="payMethod"]:checked')?.value==='振込');
+}
+function toggleBankFields(){
+  const isY=document.querySelector('input[name="bankName"]:checked')?.value==='ゆうちょ銀行';
+  document.getElementById('accountNumberLabel').innerHTML=(isY?'記号':'店番号')+' <span class="req">*</span>';
+  document.getElementById('accountLabel').innerHTML=(isY?'番号':'口座番号')+' <span class="req">*</span>';
+  document.getElementById('branchField').style.display=isY?'none':'';
+  document.getElementById('accountTypeField').style.display=isY?'none':'';
+  document.getElementById('bankBranchNumber').placeholder=isY?'例：12345':'例：123';
+  document.getElementById('accountNumber').placeholder=isY?'例：12345678':'例：1234567';
+}
+function toggleRelationOther(){
+  const v=document.getElementById('emergencyRelation').value;
+  document.getElementById('relationOtherField').style.display=v==='その他'?'block':'none';
+  if(v!=='その他'){document.getElementById('relationOther').value='';hideErr('relationOther');}
+}
+function onFileChange(){const f=document.getElementById('idFile').files[0];if(f)setFile(f);}
+function setFile(file){
+  if(file.size>5*1024*1024){alert('ファイルサイズは5MB以内にしてください。');return;}
+  const dt=new DataTransfer();dt.items.add(file);document.getElementById('idFile').files=dt.files;
+  document.getElementById('filePreviewName').textContent=file.name;
+  document.getElementById('filePreview').classList.add('show');
+  document.getElementById('fileUploadArea').classList.remove('error');
+  hideErr('idFile');
+}
+function removeFile(){
+  document.getElementById('idFile').value='';
+  document.getElementById('filePreview').classList.remove('show');
+  document.getElementById('filePreviewName').textContent='';
 }
 
-// ゆうちょの場合ラベル変更
-function toggleBankFields() {
-  const bank = document.querySelector('input[name="bankName"]:checked')?.value;
-  const isYucho = bank === 'ゆうちょ銀行';
-  document.getElementById('accountNumberLabel').innerHTML = (isYucho ? '記号' : '店番号') + ' <span class="req">*</span>';
-  document.getElementById('accountLabel').innerHTML = (isYucho ? '番号' : '口座番号') + ' <span class="req">*</span>';
-  document.getElementById('branchField').style.display = isYucho ? 'none' : '';
-  document.getElementById('accountTypeField').style.display = isYucho ? 'none' : '';
-  document.getElementById('bankBranchNumber').placeholder = isYucho ? '例：12345' : '例：123';
-  document.getElementById('accountNumber').placeholder = isYucho ? '例：12345678' : '例：1234567';
-}
+function showErr(id,msg){const el=document.getElementById('err_'+id);if(el){if(msg)el.textContent=msg;el.classList.add('show');}const inp=document.getElementById(id);if(inp)inp.classList.add('error');}
+function hideErr(id){const el=document.getElementById('err_'+id);if(el)el.classList.remove('show');const inp=document.getElementById(id);if(inp)inp.classList.remove('error');}
+function val(id){return(document.getElementById(id)?.value||'').trim();}
+function radio(nm){return document.querySelector(`input[name="${nm}"]:checked`)?.value||'';}
+function getNow(){const n=new Date();return`${n.getFullYear()}/${String(n.getMonth()+1).padStart(2,'0')}/${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+function fullName(l,f){return val(l)+'\u3000'+val(f);}
+function getRelation(){const s=val('emergencyRelation');return s==='その他'?val('relationOther'):s;}
+function formatPhone(raw){const d=raw.replace(/\D/g,'');if(d.length===11)return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);if(d.length===10)return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);return d;}
 
-// 続柄「その他」の自由入力フィールド表示切り替え
-function toggleRelationOther() {
-  const val = document.getElementById('emergencyRelation').value;
-  const field = document.getElementById('relationOtherField');
-  field.style.display = val === 'その他' ? 'block' : 'none';
-  if(val !== 'その他') {
-    document.getElementById('relationOther').value = '';
-    hideErr('relationOther');
-  }
-}
-
-// 電話番号にハイフンを付与（数字のみ→0X0-XXXX-XXXX 形式）
-function formatPhone(raw) {
-  const digits = raw.replace(/\D/g, '');
-  if(digits.length === 11) {
-    return digits.slice(0,3) + '-' + digits.slice(3,7) + '-' + digits.slice(7);
-  } else if(digits.length === 10) {
-    return digits.slice(0,3) + '-' + digits.slice(3,6) + '-' + digits.slice(6);
-  }
-  return digits;
-}
-
-// エラー表示制御
-function showErr(id, msg) {
-  const el = document.getElementById('err_' + id);
-  if(el){ if(msg) el.textContent = msg; el.classList.add('show'); }
-  const inp = document.getElementById(id);
-  if(inp) inp.classList.add('error');
-}
-function hideErr(id) {
-  const el = document.getElementById('err_' + id);
-  if(el) el.classList.remove('show');
-  const inp = document.getElementById(id);
-  if(inp) inp.classList.remove('error');
-}
-
-function val(id){ return (document.getElementById(id)?.value||'').trim(); }
-function radio(name){ return document.querySelector(`input[name="${name}"]:checked`)?.value||''; }
-
-// 現在日時の取得
-function getNow() {
-  const now = new Date();
-  const yyyy = now.getFullYear();
-  const mm = String(now.getMonth()+1).padStart(2,'0');
-  const dd = String(now.getDate()).padStart(2,'0');
-  const hh = String(now.getHours()).padStart(2,'0');
-  const mi = String(now.getMinutes()).padStart(2,'0');
-  return `${yyyy}/${mm}/${dd} ${hh}:${mi}`;
-}
-
-// 氏名の全角スペース結合
-function fullName(lastId, firstId) {
-  return val(lastId) + '\u3000' + val(firstId);
-}
-
-// 続柄の最終値取得（その他の場合は自由入力）
-function getRelation() {
-  const sel = val('emergencyRelation');
-  if(sel === 'その他') return val('relationOther');
-  return sel;
-}
-
-// バリデーション
-function validate() {
-  let ok = true;
-  const req = (id, msg) => { if(!val(id)){ showErr(id, msg||'必須項目です。'); ok=false; } else hideErr(id); };
-  const reqRadio = (name, msg) => { if(!radio(name)){ showErr(name, msg); ok=false; } else hideErr(name); };
-
-  reqRadio('workType','勤務スタイルを選択してください。');
-  req('lastName','苗字を入力してください。');
-  req('firstName','名前を入力してください。');
-  req('lastNameKana','苗字（カナ）を入力してください。');
-  req('firstNameKana','名前（カナ）を入力してください。');
-  reqRadio('gender','性別を選択してください。');
-  if(!val('birthDate')){ showErr('birthDate','生年月日を入力してください。'); ok=false; } else hideErr('birthDate');
-
-  if(!val('zipCode')){ showErr('zipCode','郵便番号を入力してください。'); ok=false; } else hideErr('zipCode');
-  req('prefecture','都道府県を入力してください。');
-  req('address1','住所を入力してください。');
-
-  const phoneReg = /^\d{10,11}$/;
-  if(!phoneReg.test(val('phone').replace(/\D/g,''))){ showErr('phone','電話番号を正しく入力してください（数字のみ、10〜11桁）。'); ok=false; } else hideErr('phone');
-
-  const emailVal = val('email');
-  if(!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
-    showErr('email','有効なメールアドレスを入力してください。'); ok=false;
-  } else if(/@icloud\.com$/i.test(emailVal)||/@me\.com$/i.test(emailVal)||/@mac\.com$/i.test(emailVal)){
-    showErr('email','iCloudメール（@icloud.com等）はご利用いただけません。'); ok=false;
-  } else hideErr('email');
-
-  if(!phoneReg.test(val('emergencyPhone').replace(/\D/g,''))){ showErr('emergencyPhone','電話番号を正しく入力してください（数字のみ、10〜11桁）。'); ok=false; } else hideErr('emergencyPhone');
-  req('emergencyLastName','苗字を入力してください。');
-  req('emergencyFirstName','名前を入力してください。');
-  if(!val('emergencyRelation')){ showErr('emergencyRelation','続柄を選択してください。'); ok=false; } else hideErr('emergencyRelation');
-  if(val('emergencyRelation') === 'その他'){
-    if(!val('relationOther')){ showErr('relationOther','続柄を入力してください。'); ok=false; } else hideErr('relationOther');
-  }
-
-  reqRadio('payMethod','受け取り方法を選択してください。');
+function validate(){
+  let ok=true;
+  const req=(id,msg)=>{if(!val(id)){showErr(id,msg||'必須項目です。');ok=false;}else hideErr(id);};
+  const reqR=(nm,msg)=>{if(!radio(nm)){showErr(nm,msg);ok=false;}else hideErr(nm);};
+  reqR('workType','勤務スタイルを選択してください。');
+  req('lastName','苗字を入力してください。');req('firstName','名前を入力してください。');
+  req('lastNameKana','苗字（カナ）を入力してください。');req('firstNameKana','名前（カナ）を入力してください。');
+  reqR('gender','性別を選択してください。');
+  req('birthDate','生年月日を入力してください。');
+  if(!val('zipCode')){showErr('zipCode','郵便番号を入力してください。');ok=false;}else hideErr('zipCode');
+  req('prefecture','都道府県を入力してください。');req('address1','住所を入力してください。');
+  const pReg=/^\d{10,11}$/;
+  if(!pReg.test(val('phone').replace(/\D/g,''))){showErr('phone','電話番号を正しく入力してください（数字のみ10〜11桁）。');ok=false;}else hideErr('phone');
+  const em=val('email');
+  if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){showErr('email','有効なメールアドレスを入力してください。');ok=false;}
+  else if(/@icloud\.com$/i.test(em)||/@me\.com$/i.test(em)||/@mac\.com$/i.test(em)){showErr('email','iCloudメール（@icloud.com等）はご利用いただけません。');ok=false;}
+  else hideErr('email');
+  if(!pReg.test(val('emergencyPhone').replace(/\D/g,''))){showErr('emergencyPhone','電話番号を正しく入力してください（数字のみ10〜11桁）。');ok=false;}else hideErr('emergencyPhone');
+  req('emergencyLastName','苗字を入力してください。');req('emergencyFirstName','名前を入力してください。');
+  if(!val('emergencyRelation')){showErr('emergencyRelation','続柄を選択してください。');ok=false;}else hideErr('emergencyRelation');
+  if(val('emergencyRelation')==='その他'){if(!val('relationOther')){showErr('relationOther','続柄を入力してください。');ok=false;}else hideErr('relationOther');}
+  reqR('payMethod','受け取り方法を選択してください。');
   if(radio('payMethod')==='振込'){
-    reqRadio('bankName','銀行名を選択してください。');
-    const isYucho = radio('bankName')==='ゆうちょ銀行';
-    if(!isYucho){
-      req('branchName','支店名を入力してください。');
-      reqRadio('accountType','種別を選択してください。');
-    }
-    req('bankBranchNumber', isYucho?'記号を入力してください。':'店番号を入力してください。');
-    req('accountNumber', isYucho?'番号を入力してください。':'口座番号を入力してください。');
-    req('accountLastName','苗字（カナ）を入力してください。');
-    req('accountFirstName','名前（カナ）を入力してください。');
+    reqR('bankName','銀行名を選択してください。');
+    const isY=radio('bankName')==='ゆうちょ銀行';
+    if(!isY){req('branchName','支店名を入力してください。');reqR('accountType','種別を選択してください。');}
+    req('bankBranchNumber',isY?'記号を入力してください。':'店番号を入力してください。');
+    req('accountNumber',isY?'番号を入力してください。':'口座番号を入力してください。');
+    req('accountLastName','苗字（カナ）を入力してください。');req('accountFirstName','名前（カナ）を入力してください。');
   }
-
-  // 身分証チェック
-  const idFileInput = document.getElementById('idFile');
-  if(!idFileInput.files || idFileInput.files.length === 0){
-    showErr('idFile','身分証明書の画像を添付してください。');
-    document.getElementById('fileUploadArea').classList.add('error');
-    ok=false;
-  } else {
-    hideErr('idFile');
-    document.getElementById('fileUploadArea').classList.remove('error');
-  }
-
+  const fi=document.getElementById('idFile');
+  if(!fi.files||fi.files.length===0){showErr('idFile','身分証明書の画像を添付してください。');document.getElementById('fileUploadArea').classList.add('error');ok=false;}
+  else{hideErr('idFile');document.getElementById('fileUploadArea').classList.remove('error');}
   return ok;
 }
 
-// 確認画面表示
-function showConfirm() {
-  if(!validate()){
-    const firstErr = document.querySelector('.err-msg.show');
-    if(firstErr) firstErr.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-
-  const isTransfer = radio('payMethod')==='振込';
-  const isYucho = radio('bankName')==='ゆうちょ銀行';
-
-  const sections = [
-    {
-      head: '登録種別',
-      rows: [['勤務スタイル', radio('workType')]]
-    },
-    {
-      head: '会員情報',
-      rows: [
-        ['お名前', fullName('lastName','firstName')],
-        ['お名前（カナ）', fullName('lastNameKana','firstNameKana')],
-        ['性別', radio('gender')],
-        ['生年月日', val('birthDate').replace(/-/g,'/')],
-      ]
-    },
-    {
-      head: '住所',
-      rows: [
-        ['郵便番号', val('zipCode')],
-        ['都道府県', val('prefecture')],
-        ['市区町村・番地', val('address1')],
-        ...(val('address2') ? [['建物名等', val('address2')]] : []),
-      ]
-    },
-    {
-      head: '連絡先',
-      rows: [
-        ['電話番号', formatPhone(val('phone'))],
-        ['メールアドレス', val('email')],
-      ]
-    },
-    {
-      head: '緊急連絡先',
-      rows: [
-        ['電話番号', formatPhone(val('emergencyPhone'))],
-        ['氏名', fullName('emergencyLastName','emergencyFirstName')],
-        ['続柄', getRelation()],
-      ]
-    },
-    {
-      head: '給与受け取り',
-      rows: [
-        ['受け取り方法', radio('payMethod')],
-        ...(isTransfer ? [
-          ['銀行名', radio('bankName')],
-          ...(!isYucho ? [['支店名', val('branchName')], ['種別', radio('accountType')]] : []),
-          [isYucho?'記号':'店番号', val('bankBranchNumber')],
-          [isYucho?'番号':'口座番号', val('accountNumber')],
-          ['口座名義（カナ）', fullName('accountLastName','accountFirstName')],
-        ] : []),
-      ]
-    },
-    {
-      head: '身分証明書',
-      rows: [
-        ['添付ファイル', document.getElementById('idFile').files[0]?.name || ''],
-      ]
-    },
+function showConfirm(){
+  if(!validate()){document.querySelector('.err-msg.show')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const isT=radio('payMethod')==='振込',isY=radio('bankName')==='ゆうちょ銀行';
+  const bankRows=isT?[
+    ['銀行名',radio('bankName')],
+    ...(!isY?[['支店名',val('branchName')],['種別',radio('accountType')]]:[] ),
+    [isY?'記号':'店番号',val('bankBranchNumber')],
+    [isY?'番号':'口座番号',val('accountNumber')],
+    ['口座名義（カナ）',fullName('accountLastName','accountFirstName')]
+  ]:[];
+  const sections=[
+    {head:'登録種別',rows:[['勤務スタイル',radio('workType')]]},
+    {head:'会員情報',rows:[['お名前',fullName('lastName','firstName')],['お名前（カナ）',fullName('lastNameKana','firstNameKana')],['性別',radio('gender')],['生年月日',val('birthDate').replace(/-/g,'/')]]},
+    {head:'住所',rows:[['郵便番号',val('zipCode')],['都道府県',val('prefecture')],['市区町村・番地',val('address1')],...(val('address2')?[['建物名等',val('address2')]]:[])]},
+    {head:'連絡先',rows:[['電話番号',formatPhone(val('phone'))],['メールアドレス',val('email')]]},
+    {head:'緊急連絡先',rows:[['電話番号',formatPhone(val('emergencyPhone'))],['氏名',fullName('emergencyLastName','emergencyFirstName')],['続柄',getRelation()]]},
+    {head:'給与受け取り',rows:[['受け取り方法',isT?'振込（銀行口座振込）':'来店（窓口で現金受取）'],...bankRows]},
+    {head:'身分証明書',rows:[['添付ファイル',document.getElementById('idFile').files[0]?.name||'']]},
   ];
-
-  let html = '';
-  sections.forEach(s => {
-    html += `<div class="confirm-card"><div class="confirm-section-head">${s.head}</div>`;
-    s.rows.forEach(([l,v]) => {
-      html += `<div class="confirm-row"><div class="confirm-label">${l}</div><div class="confirm-value">${v}</div></div>`;
-    });
-    html += '</div>';
+  let html='';
+  sections.forEach(s=>{
+    html+=`<div class="confirm-card"><div class="confirm-section-head">${s.head}</div>`;
+    s.rows.forEach(([l,v])=>{html+=`<div class="confirm-row"><div class="confirm-label">${l}</div><div class="confirm-value">${v}</div></div>`;});
+    html+='</div>';
   });
-
-  document.getElementById('confirmContent').innerHTML = html;
+  document.getElementById('confirmContent').innerHTML=html;
   document.getElementById('formScreen').classList.add('hide');
   document.getElementById('confirmScreen').classList.add('show');
   window.scrollTo({top:0,behavior:'smooth'});
-
-  const items = document.querySelectorAll('.step-item');
-  items.forEach((d,i) => {
-    d.className = 'step-item' + (i<1?' done':'') + (i===1?' active':'');
-  });
+  document.querySelectorAll('.step-item').forEach((d,i)=>{d.className='step-item'+(i<1?' done':'')+(i===1?' active':'');});
 }
 
-// フォームに戻る
-function backToForm() {
+function backToForm(){
   document.getElementById('formScreen').classList.remove('hide');
   document.getElementById('confirmScreen').classList.remove('show');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// 送信（登録日時をここで自動取得、GASへPOST）
-async function submitForm() {
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxo82kNguGqFw5VLPQtZhIO74w2SZHFpZpn-Ev4tJEOqHU8NOfxe7QEgKNrPHMfu6E_sA/exec';
-
-  const isTransfer = radio('payMethod') === '振込';
-  const isYucho    = radio('bankName')  === 'ゆうちょ銀行';
-
-  // 住所（郵便番号を除き、番地＋建物名まで）
-  const fullAddress = val('prefecture') + val('address1') + (val('address2') ? val('address2') : '');
-
-  // 列順：A〜U（21要素）
-  const rowData = [
-    '',                                                    // A: 会員ID（空白）
-    radio('workType'),                                     // B: 単発/長期
-    fullName('lastName','firstName'),                      // C: 氏名
-    fullName('lastNameKana','firstNameKana'),               // D: 氏名カナ
-    radio('gender'),                                       // E: 性別
-    val('birthDate').replace(/-/g,'/'),                    // F: 生年月日
-    '',                                                    // G: 年齢（自動計算のため空白）
-    fullAddress,                                           // H: 住所
-    formatPhone(val('phone')),                             // I: 電話番号
-    val('email'),                                          // J: メールアドレス
-    formatPhone(val('emergencyPhone')),                    // K: 緊急連絡先電話番号
-    fullName('emergencyLastName','emergencyFirstName'),     // L: 緊急連絡先氏名
-    getRelation(),                                         // M: 続柄
-    isTransfer ? radio('bankName')              : '',      // N: 銀行名
-    isTransfer && !isYucho ? val('branchName')  : '',      // O: 支店名
-    isTransfer && !isYucho ? radio('accountType') : '',    // P: 種別
-    isTransfer ? val('bankBranchNumber')         : '',     // Q: 店番号（ゆうちょは記号）
-    isTransfer ? val('accountNumber')            : '',     // R: 口座番号（ゆうちょは番号）
-    isTransfer ? fullName('accountLastName','accountFirstName') : '', // S: 口座名義
-    radio('payMethod'),                                    // T: 振込/来店
-    getNow(),                                              // U: 登録日時
+async function submitForm(){
+  // ★ デプロイ後にGASのWebアプリURLをここに貼り付けてください
+  const GAS_URL='https://script.google.com/macros/s/AKfycbzZqVdcaIn1ZDOgzhgptSB4B_SaUbSEcCf8PY1H0qRUheqtG01bx9K2zomy-1yt4f_7mQ/exec';
+  const btn=document.getElementById('btnConfirm');
+  btn.disabled=true;btn.textContent='送信中...';
+  const isT=radio('payMethod')==='振込',isY=radio('bankName')==='ゆうちょ銀行';
+  const fullAddr=val('prefecture')+val('address1')+(val('address2')?val('address2'):'');
+  const rowData=[
+    '',                                                         // A: 会員ID（空白）
+    radio('workType'),                                          // B: 単発/長期
+    fullName('lastName','firstName'),                           // C: 氏名
+    fullName('lastNameKana','firstNameKana'),                   // D: 氏名カナ
+    radio('gender'),                                            // E: 性別
+    val('birthDate').replace(/-/g,'/'),                        // F: 生年月日
+    '',                                                         // G: 年齢（自動計算のため空白）
+    fullAddr,                                                   // H: 住所
+    formatPhone(val('phone')),                                  // I: 電話番号
+    val('email'),                                               // J: メールアドレス
+    formatPhone(val('emergencyPhone')),                         // K: 緊急連絡先電話番号
+    fullName('emergencyLastName','emergencyFirstName'),          // L: 緊急連絡先氏名
+    getRelation(),                                              // M: 続柄
+    isT?radio('bankName'):'',                                  // N: 銀行名
+    isT&&!isY?val('branchName'):'',                            // O: 支店名
+    isT&&!isY?radio('accountType'):'',                         // P: 種別
+    isT?val('bankBranchNumber'):'',                            // Q: 店番号（ゆうちょは記号）
+    isT?val('accountNumber'):'',                               // R: 口座番号（ゆうちょは番号）
+    isT?fullName('accountLastName','accountFirstName'):'',      // S: 口座名義
+    radio('payMethod'),                                         // T: 振込/来店
+    getNow(),                                                   // U: 登録日時
   ];
-
-  // 送信ボタンを無効化・スピナー表示
-  const btn = document.querySelector('.btn-confirm');
-  if(btn){ btn.disabled = true; btn.textContent = '送信中...'; }
-
-  try {
-    // 身分証画像をbase64に変換
-    const idFileInput = document.getElementById('idFile');
-    let fileBase64 = '';
-    let fileName   = '';
-    let mimeType   = '';
-
-    if (idFileInput.files && idFileInput.files[0]) {
-      const file = idFileInput.files[0];
-      fileName = file.name;
-      mimeType = file.type;
-      fileBase64 = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload  = () => resolve(reader.result.split(',')[1]); // base64部分だけ取り出す
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    // GASへPOST
-    await fetch(GAS_URL, {
-      method: 'POST',
-      mode: 'no-cors', // CORSエラー回避（GASの仕様）
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        row:      rowData,
-        file:     fileBase64,
-        fileName: fileName,
-        mimeType: mimeType,
-      }),
-    });
-
-  } catch(err) {
-    console.error('送信エラー:', err);
-    // エラーが出ても完了画面には進む（GAS側でエラーログ確認を推奨）
+  let fileBase64='',fileName='',mimeType='';
+  const fi=document.getElementById('idFile');
+  if(fi.files&&fi.files[0]){
+    const file=fi.files[0];fileName=file.name;mimeType=file.type;
+    fileBase64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
   }
-
+  try{
+    await fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({row:rowData,file:fileBase64,fileName,mimeType})});
+  }catch(e){console.error('送信エラー:',e);}
   document.getElementById('confirmScreen').classList.remove('show');
   document.getElementById('successScreen').classList.add('show');
   window.scrollTo({top:0,behavior:'smooth'});
-
-  const items = document.querySelectorAll('.step-item');
-  items.forEach(d => { d.className = 'step-item done'; });
-}
+  document.querySelectorAll('.step-item').forEach(d=>{d.className='step-item done';});
 }
 </script>
 </body>
