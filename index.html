@@ -495,7 +495,7 @@ function backToForm(){
 
 async function submitForm(){
   // ★ デプロイ後にGASのWebアプリURLをここに貼り付けてください
-  const GAS_URL='https://script.google.com/macros/s/AKfycby7VfXyDojuQB5anTW0Q2CgTD7O-J3lQr7UmPgqmmH79r4t0l59ImQpg17CtWiuRtri3Q/exec';
+  const GAS_URL='https://script.google.com/macros/s/AKfycbw1dADmvqTX7srtZosJspMI-JSdyawyJjHCt05pmqJfwAZPEzzJHdI_GLQOdqP1BTQsqQ/exec';
   const btn=document.getElementById('btnConfirm');
   btn.disabled=true;btn.textContent='送信中...';
   const isT=radio('payMethod')==='振込',isY=radio('bankName')==='ゆうちょ銀行';
@@ -521,7 +521,7 @@ async function submitForm(){
     isT?val('accountNumber'):'',                               // R: 口座番号（ゆうちょは番号）
     isT?fullName('accountLastName','accountFirstName'):'',      // S: 口座名義
     radio('payMethod'),                                         // T: 振込/来店
-    getNow(),                                                   // U: 登録日時
+    getNow(),                                                   // U: 登録日（yyyy/mm/dd）
   ];
   let fileBase64='',fileName='',mimeType='';
   const fi=document.getElementById('idFile');
