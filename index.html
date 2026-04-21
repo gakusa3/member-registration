@@ -414,7 +414,7 @@ function showErr(id,msg){const el=document.getElementById('err_'+id);if(el){if(m
 function hideErr(id){const el=document.getElementById('err_'+id);if(el)el.classList.remove('show');const inp=document.getElementById(id);if(inp)inp.classList.remove('error');}
 function val(id){return(document.getElementById(id)?.value||'').trim();}
 function radio(nm){return document.querySelector(`input[name="${nm}"]:checked`)?.value||'';}
-function getNow(){const n=new Date();return`${n.getFullYear()}/${String(n.getMonth()+1).padStart(2,'0')}/${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;}
+function getNow(){const n=new Date();return`${n.getFullYear()}/${String(n.getMonth()+1).padStart(2,'0')}/${String(n.getDate()).padStart(2,'0')}`;}
 function fullName(l,f){return val(l)+'\u3000'+val(f);}
 function getRelation(){const s=val('emergencyRelation');return s==='その他'?val('relationOther'):s;}
 function formatPhone(raw){const d=raw.replace(/\D/g,'');if(d.length===11)return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);if(d.length===10)return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);return d;}
@@ -495,7 +495,7 @@ function backToForm(){
 
 async function submitForm(){
   // ★ デプロイ後にGASのWebアプリURLをここに貼り付けてください
-  const GAS_URL='https://script.google.com/macros/s/AKfycbzZqVdcaIn1ZDOgzhgptSB4B_SaUbSEcCf8PY1H0qRUheqtG01bx9K2zomy-1yt4f_7mQ/exec';
+  const GAS_URL='https://script.google.com/macros/s/AKfycby7VfXyDojuQB5anTW0Q2CgTD7O-J3lQr7UmPgqmmH79r4t0l59ImQpg17CtWiuRtri3Q/exec';
   const btn=document.getElementById('btnConfirm');
   btn.disabled=true;btn.textContent='送信中...';
   const isT=radio('payMethod')==='振込',isY=radio('bankName')==='ゆうちょ銀行';
